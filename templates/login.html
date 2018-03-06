@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign-Up</title>
+    <link href="{{ url_for('static', filename='home_design.css') }}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<center>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+      for (var i=0; i<messages.length; i++) {
+        console.log("wheeeeee")
+        alert(messages[i]);
+      }
+    </script>
+  {% endif %}
+{% endwith %}
+  <header class="header">
+        <h1>Storybook</h1>
+        <h2>Make your words come to life</h2>
+  </header>
+  <h1>Log into your account</h1>
+  <p>Don't have an account? <u> <a href="/register">Register here</a></u>.<!--link to login page-->
+<fieldset style="width:30%">
+<legend>Login</legend>
+<table border="0">
+
+  <form name="login" action="/auth" method="POST">
+  E-mail: <input type="text" name="email"> <br>
+  Password: <input type="password" name="password"> <br>
+  <input type="submit" value="Log in">
+  </form>
+
+  </a>
+
+</table>
+</fieldset>
+
+</center>
+</body>
+</html>

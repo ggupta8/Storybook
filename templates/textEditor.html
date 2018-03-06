@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text Editor</title>
+        <link href="{{ url_for('static', filename='design.css') }}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+
+        <style>
+            html, body {
+                margin: 0;
+                padding:0;
+            }
+
+            @font-face {
+                font-family: 'Jorge';
+                src: url('Jorge.ttf');
+            }
+
+            h1 {
+                opacity: 1;
+                -ms-transform: rotate(-10deg);
+                -webkit-transform: rotate(-10deg);
+                text-transform: rotate(-10deg);
+                font-family: 'Jorge', Script, sans-serif;
+                font-size: 150px;
+                padding-top: 100px;
+                margin-top: -60px;
+            }
+
+            h2 {
+                margin-top: -100px;
+                padding-left: 450px;
+                font-family: 'Shadows Into Light', cursive;
+                font-size: 30px;
+                padding-bottom: 120px;
+            }
+
+            .sidenav {
+                height: 100%;
+                width: 200px;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)), url(static/journal.jpg);
+                background-repeat: no-repeat;
+                overflow-x: hidden;
+                padding-top: 20px;
+            }
+
+            .sidenav a {
+                padding: 6px 6px 6px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #111;
+                display: block;
+                font-family: 'Shadows Into Light', cursive;
+            }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+
+            .main {
+                margin-left: 200px; /* Same as the width of the sidenav */
+            }
+
+            .toolbar {
+                margin-left: 200px; /* Same as the width of the sidenav */
+            }
+
+            @media screen and (max-height: 450px) {
+              .sidenav {padding-top: 15px;}
+              .sidenav a {font-size: 18px;}
+            }
+
+            .button2 {
+                position: relative;
+                top: 20px;
+                font-family: 'Shadows Into Light', cursive;
+                text-decoration: none;
+                color: #ffffff;
+                background-color: #1c1c1c;
+                font-size: 20px;
+                padding: 15px 40px;
+            }
+
+        </style>
+  </head>
+
+  <body>
+    <center>
+
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/editor">Editor</a>
+            <a href="/allPages">Public</a>
+        </div>
+
+        <div class="main">
+            <h1>Storybook</h1>
+            <h2>Make your words come to life</h2>
+        </div>
+
+        <div class="toolbar">
+            <a href="#" data-command='undo'><i class='fa fa-undo'></i></a>
+            <a href="#" data-command='redo'><i class='fa fa-repeat'></i></a>
+            <div class="fore-wrapper"><i class='fa fa-font' style='color:#C96;'></i>
+            <div class="fore-palette"></div>
+        </div>
+  <div class="back-wrapper"><i class='fa fa-font' style='background:#C96;'></i>
+    <div class="back-palette"></div>
+  </div>
+
+  <a href="#" data-command='bold'><i class='fa fa-bold'></i></a>
+  <a href="#" data-command='italic'><i class='fa fa-italic'></i></a>
+  <a href="#" data-command='underline'><i class='fa fa-underline'></i></a>
+  <a href="#" data-command='strikeThrough'><i class='fa fa-strikethrough'></i></a>
+  <a href="#" data-command='justifyLeft'><i class='fa fa-align-left'></i></a>
+  <a href="#" data-command='justifyCenter'><i class='fa fa-align-center'></i></a>
+  <a href="#" data-command='justifyRight'><i class='fa fa-align-right'></i></a>
+  <a href="#" data-command='justifyFull'><i class='fa fa-align-justify'></i></a>
+  <a href="#" data-command='indent'><i class='fa fa-indent'></i></a>
+  <a href="#" data-command='outdent'><i class='fa fa-outdent'></i></a>
+  <a href="#" data-command='insertUnorderedList'><i class='fa fa-list-ul'></i></a>
+  <a href="#" data-command='insertOrderedList'><i class='fa fa-list-ol'></i></a>
+  <a href="#" data-command='h1'>H1</a>
+  <a href="#" data-command='h2'>H2</a>
+  <a href="#" data-command='createlink'><i class='fa fa-link'></i></a>
+  <a href="#" data-command='unlink'><i class='fa fa-unlink'></i></a>
+  <a href="#" data-command='insertimage'><i class='fa fa-image'></i></a>
+  <a href="#" data-command='p'>P</a>
+  <a href="#" data-command='subscript'><i class='fa fa-subscript'></i></a>
+  <a href="#" data-command='superscript'><i class='fa fa-superscript'></i></a>
+</div>
+
+<div id='editor' contenteditable="true" style="margin-left:200px; height:400px;width:750px; text-align: left; border: 1px solid gray; overflow:auto;" onclick='$(this).focus(); '>
+{{insertedValue}}
+</div>
+        <!--<textarea style="height:400px; width:750px; padding:-50px; overflow:auto;" onblur="x=this.value"></textarea>-->
+    </center>
+    <div align="right">
+        <button id="blue" class="button2">
+            Suggesting Mode
+        </button>
+        </br>
+        </br>
+        </br>
+        </br>
+        <button id="downloadStory" class="button2">
+            Download
+        </button>
+        </br>
+        </br>
+        </br>
+        </br>
+        <button id="savePrompt" class="button2">
+            Save
+        </button>
+    </div>
+
+<!--<div id="notebook_page_links">
+    <h2>Notebook Pages</h2>
+</div>-->
+</body>
+</html>
+
+<script type="text/javascript">
+
+/**function getOtherPages()    {
+    var request = $.ajax({
+        type: 'GET',
+        dataType: "text"
+    });
+}*/
+function downloadFile() {
+     var storyContent = $('#editor').html();
+        window.open("data:application/txt," + encodeURIComponent(storyContent), "_self");
+}
+function saveFile()    {
+    // console.log('saving')
+    var fileName = prompt("Enter name of file you want to save!", "MyFile");
+    var storyContent = $('#editor').html();
+    var request = $.ajax({
+                url: '/savePage?page={{page_id}}',
+                type: 'POST',
+                data: {name: fileName, content: storyContent}, //{{image_url}}
+                dataType: "text"
+            });
+             request.done(function( msg ) {
+                console.log(msg)
+                location.reload();
+            });
+            request.error(function(){
+                alert('could not save');
+            });
+}
+
+/**$("#notebook_page_links")(function())   {
+    getOtherPages();
+}*/
+$("#savePrompt").click(function() {
+   console.log('wow')
+    saveFile();
+});
+
+$("#downloadStory").click(function()   {
+    downloadFile();
+});
+
+$("#red").click(function () {
+       $("div").addClass("red");
+    $("div").removeClass("blue");   
+});
+
+$("#blue").click(function () {
+   $('<span>')                      
+        .attr('contenteditable','true') 
+       .attr('class','blue') 
+        .html('&nbsp;')        
+        .appendTo('#my-contenteditable-div')   
+});
+</script>

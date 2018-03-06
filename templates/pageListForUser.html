@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Storybook</title>
+<link href="{{ url_for('static', filename='home_design.css') }}" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+
+<style>
+
+h1 {
+    margin-top: -60px;
+    font-size: 120px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    padding-top: -40px;
+    padding-left: 80px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)), url(static/journal.jpg);
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #111;
+    display: block;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.button3 {
+    position: relative;
+    top: 20px;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1c1c1c;
+    background-color: #1c1c1c;
+    background-image: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url(static/notebook.jpg);
+    background-size: contain;
+    font-size: 20px;
+    padding: 40px 40px;
+    margin-left: 80px;
+}
+
+.button4 {
+    position: relative;
+    top: 20px;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1c1c1c;
+    background-color: #1c1c1c;
+    background-image: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url(static/settings.jpg);
+    background-size: contain;
+    font-size: 20px;
+    padding: 40px 40px;
+    margin-left: 80px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="/">Home</a>
+  <a href="#">About</a>
+  <a href="/editor">Editor</a>
+  <a href="#">Contact</a>
+</div>
+
+<div class="main">
+    <center>
+    <h1>Storybook</h1>
+    <h2>Make your words come to life</h2>
+    </center>
+
+    <div id="user info">
+        <h3>Active Notebooks</h3>
+
+		<ul>
+		{% for page in pages %}
+		    <li><a href="{{page['link']}}">{{page['name']}}</a></li>
+		{% endfor %}
+		</ul>
+    </div>
+
+</div>
+     
+</body>
+</html> 

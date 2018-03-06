@@ -1,0 +1,126 @@
+html, body {
+	margin: 0;
+	padding:0;
+}
+
+@font-face {
+	font-family: 'Jorge';
+	src: url('Jorge.ttf');
+}
+
+h1 {
+	margin: 0;
+	opacity: 1;
+	-ms-transform: rotate(-10deg);
+	-webkit-transform: rotate(-10deg);
+	text-transform: rotate(-10deg);
+  	font-family: 'Jorge', Script, sans-serif;
+  	font-size: 150px;
+	padding-top: 100px;
+}
+
+h2 {
+	margin-top: -100px;
+	padding-left: 450px;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 30px;
+	padding-bottom: 120px;
+}
+
+#editor {
+  -moz-box-shadow:0 0 8px 0 black;
+  -webkit-box-shadow:0 0 8px 0 black;
+  box-shadow:0 0 8px 0 black;
+  min-height: 150px;
+  overflow: auto;
+  padding: 1em;
+  margin-top: 20px;
+  resize: vertical;
+  outline: none;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+	background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)), url("journal.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+}
+
+.button1 {
+	position: relative;
+	top: -40px;
+	font-family: 'Shadows Into Light', cursive;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #1c1c1c;
+	font-size: 20px;
+	padding: 15px 40px;
+}
+
+#downArrow a {
+	position: relative;
+	top: -20px;
+	font-family: 'Architects Daughter', cursive;
+	color: #000000;
+	text-decoration: none;
+	font-size: 40px;
+}
+
+.button2 {
+	position: relative;
+	top: 20px;
+	font-family: 'Shadows Into Light', cursive;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #1c1c1c;
+	font-size: 20px;
+	padding: 15px 40px;
+}
+
+.button3 {
+	position: relative;
+	top: 20px;
+	font-family: 'Shadows Into Light', cursive;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #1c1c1c;
+	background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)), url(static/notebook.jpg);
+	font-size: 20px;
+	padding: 15px 40px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
